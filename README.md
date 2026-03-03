@@ -1,18 +1,28 @@
-# JPEG to PDF Converter
+# Create PDF from JPEGs (compressed)
 
-Converts all .jpg/.jpeg files in a folder into a single PDF file using img2pdf.
+This tool:
+1) Preprocesses .jpg/.jpeg scans (optional resize + recompress using Pillow)
+2) Creates a single PDF (using img2pdf)
 
-## Setup
+## Setup (PowerShell)
 
-python -m venv venv
-venv\Scripts\activate   (Windows)
-source venv/bin/activate (Mac/Linux)
-
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-## Usage
+## Basic usage
 
 python main.py scans output.pdf
 
-Files are processed in alphabetical order. 
-Rename files with leading numbers (e.g., 01.jpg, 02.jpg) if page order matters.
+## Email-friendly presets
+
+A4-ish, readable, small:
+python main.py scans output.pdf --max-width 1654 --quality 70 --grayscale
+
+Higher quality (bigger file):
+python main.py scans output.pdf --max-width 2480 --quality 80
+
+## Ordering
+
+Files are processed in alphabetical order.
+Use names like 01.jpg, 02.jpg, ... for predictable paging.
